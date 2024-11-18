@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu</title>
+    <link rel="stylesheet" href="/css/menu.css">
+</head>
+<body>
+<h1>Menu</h1>
+
+<h2>Entrées</h2>
+<div class="container" th:if="${entrees.size() > 0}">
+    <div th:each="plat : ${entrees}">
+        <img th:src="${plat.imageUrl}" alt="Image de l'entrée">
+        <h3 th:text="${plat.nom}"></h3>
+        <p th:text="${plat.description}"></p>
+        <p>Prix: <span th:text="${plat.prix}"></span> €</p>
+        <button>Ajouter au Panier</button>
+    </div>
+</div>
+
+<h2>Plats Principaux</h2>
+<div class="container" th:if="${platsPrincipaux.size() > 0}">
+    <div th:each="plat : ${platsPrincipaux}">
+        <img th:src="${plat.imageUrl}" alt="Image du plat principal">
+        <h3 th:text="${plat.nom}"></h3>
+        <p th:text="${plat.description}"></p>
+        <p>Prix: <span th:text="${plat.prix}"></span> €</p>
+        <button>Ajouter au Panier</button>
+    </div>
+</div>
+
+<h2>Desserts</h2>
+<div class="container" th:if="${desserts.size() > 0}">
+    <div th:each="plat : ${desserts}">
+        <img th:src="${plat.imageUrl}" alt="Image du dessert">
+        <h3 th:text="${plat.nom}"></h3>
+        <p th:text="${plat.description}"></p>
+        <p>Prix: <span th:text="${plat.prix}"></span> €</p>
+        <button>Ajouter au Panier</button>
+    </div>
+</div>
+
+<h2>Boissons</h2>
+<div class="container" th:if="${boissons.size() > 0}">
+    <div th:each="plat : ${boissons}">
+        <img th:src="${plat.imageUrl}" alt="Image de la boisson">
+        <h3 th:text="${plat.nom}"></h3>
+        <p th:text="${plat.description}"></p>
+        <p>Prix: <span th:text="${plat.prix}"></span> €</p>
+        <button>Ajouter au Panier</button>
+    </div>
+</div>
+</body>
+</html>

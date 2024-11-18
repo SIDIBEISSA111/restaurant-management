@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Plats</title>
+    <link rel="stylesheet" href="/css/platsList.css">
+</head>
+<body>
+<h1>Liste des Plats</h1>
+<a href="/admin/plats/create">Ajouter un nouveau plat</a>
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Catégorie</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="plat : ${plats}">
+        <td th:text="${plat.nom}"></td>
+        <td th:text="${plat.description}"></td>
+        <td th:text="${plat.prix} + ' €'"></td>
+        <td th:text="${plat.categorie}"></td>
+        <td>
+            <a th:href="@{/admin/plats/{id}/edit(id=${plat.id})}">Modifier</a> |
+            <form th:action="@{/admin/plats/{id}(id=${plat.id})}" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

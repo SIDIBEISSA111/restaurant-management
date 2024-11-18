@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un Plat</title>
+    <link rel="stylesheet" href="/css/createPlat.css">
+</head>
+<body>
+<h1>Ajouter un nouveau Plat</h1>
+<form action="/admin/plats/create" method="post" enctype="multipart/form-data">
+    <label>Nom :</label>
+    <input type="text" name="nom" required>
+
+    <label>Description :</label>
+    <textarea name="description" required></textarea>
+
+    <label>Prix :</label>
+    <input type="number" name="prix" step="0.01" required>
+
+    <label>Catégorie :</label>
+    <select name="categorie" required>
+        <option th:each="categorie : ${categories}" th:value="${categorie}" th:text="${categorie}"></option>
+    </select>
+
+    <label>Image :</label>
+    <!-- Champ de fichier pour sélectionner une image -->
+    <input type="file" id="imageFile" accept="image/*" onchange="displayImageUrl()">
+
+    <label>Image URL :</label>
+    <!-- Champ texte pour afficher le chemin de l'image -->
+    <input type="text" id="imageUrl" name="imageUrl" required readonly>
+
+    <button type="submit">Ajouter</button>
+</form>
+
+<script>
+    function displayImageUrl() {
+        // Récupère le fichier sélectionné
+        const fileInput = document.getElementById('imageFile');
+        const filePath = fileInput.value;
+
+        // Affiche le chemin de l'image dans le champ 'imageUrl'
+        document.getElementById('imageUrl').value = filePath.replace(/^.*[\\\/]/, '');
+    }
+</script>
+</body>
+</html>
